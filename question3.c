@@ -14,6 +14,7 @@ int main() {
     int zero_flag = 0, one_flag = 0, two_flag = 0, three_flag = 0,
     four_flag = 0, five_flag = 0, six_flag = 0,
     seven_flag = 0, eight_flag = 0, nine_flag = 0; //sets all flag to false
+    int all_flags = 0; //adding all the flags to check second term
 
     printf("Please enter condition numbers:\n");
     //assume input is valid
@@ -28,6 +29,7 @@ int main() {
 
     printf("Please enter test number:\n");//gets input test
 
+    //read until EOF or until inputs exceeds max length
     while (scanf(" %c", &digit) != EOF || count_digits == max_length - 1)
         {
 
@@ -104,10 +106,12 @@ int main() {
                 break;
             default: break;
         }
+
         //checks the second term - number of different digits
-        if (zero_flag + one_flag + two_flag + three_flag + four_flag + five_flag
-            + six_flag + seven_flag + eight_flag + nine_flag
-            > num_of_different_digits) {
+        all_flags = zero_flag + one_flag + two_flag + three_flag + four_flag +
+            five_flag+ six_flag + seven_flag + eight_flag + nine_flag;
+
+        if (all_flags > num_of_different_digits) {
             printf("The number given does not meet all the conditions\n");
             return 0;
         }
