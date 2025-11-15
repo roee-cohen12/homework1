@@ -28,7 +28,8 @@ int main() {
 
     printf("Please enter test number:\n");//gets input test
 
-    while (scanf(" %c", &digit) != EOF || count_digits == max_length - 1) {
+    while (scanf(" %c", &digit) != EOF || count_digits == max_length - 1)
+        {
 
         switch (digit) { //each digit processed separately to store information
             case '0': zero++; zero_flag = 1;
