@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <float.h>
 #define ERROR_TEMP 15
 
 int main() {
@@ -11,31 +12,44 @@ int main() {
     //assume there is at least one input
 
     if (scanf("%lf", &temperature) == 1) {
-        sum_temp += temperature;
-        sum_temp_weekly += temperature;
-        count_temp++;
-        max_temp = temperature;
-        min_temp = temperature;
+        //checks temperature is legal on users system
+        if (temperature <= DBL_MAX && temperature >= DBL_MIN) {
+            sum_temp += temperature;
+            sum_temp_weekly += temperature;
+            count_temp++;
+            max_temp = temperature;
+            min_temp = temperature;
+        } else {
+            printf("Error in input!\n");
+            return 0;
+        }
+    } else {
+        printf("Error in input!\n");
+        return 0;
     }
-    else return 0;
 
     while (scanf("%lf", &temperature) == 1) { //as long as input is legal
+        //checks temperature is legal on users system
+        if (temperature <= DBL_MAX && temperature >= DBL_MIN) {
+            sum_temp += temperature;
+            sum_temp_weekly += temperature;
+            count_temp++;
 
-        sum_temp += temperature;
-        sum_temp_weekly += temperature;
-        count_temp++;
-
-        if (temperature > max_temp) { //max temp check
-            max_temp = temperature;
-        }
-        if (temperature < min_temp) { //min temp check
-            min_temp = temperature;
-        }
-        if (count_temp % 7 == 0) { //checks if weekly rotation
-            count_weeks++;
-            printf("Week %d average: %.2lf\n",
-                count_weeks, sum_temp_weekly / 7);
-            sum_temp_weekly = 0; //resets the sum for the next week avg
+            if (temperature > max_temp) { //max temp check
+                max_temp = temperature;
+            }
+            if (temperature < min_temp) { //min temp check
+                min_temp = temperature;
+            }
+            if (count_temp % 7 == 0) { //checks if weekly rotation
+                count_weeks++;
+                printf("Week %d average: %.2lf\n",
+                    count_weeks, sum_temp_weekly / 7);
+                sum_temp_weekly = 0; //resets the sum for the next week avg
+            }
+        } else {
+            printf("Error in input!\n");
+            return 0;
         }
     }
 
@@ -48,6 +62,5 @@ int main() {
     } else {
         printf("Average temp: %.2lf\n", avg_overall_temp);
     }
-
     return 0;
 }

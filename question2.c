@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <limits.h>
 
 int main() {
     int num, reversed_num = 0;
     int flag_if_negative = 0;
 
-    if (scanf("%d", &num) == 0) {
+    if (scanf("%d", &num) == 0 || num > INT_MAX || num < INT_MIN) {
         printf("Error in input!\n");
         return 0;
     }
